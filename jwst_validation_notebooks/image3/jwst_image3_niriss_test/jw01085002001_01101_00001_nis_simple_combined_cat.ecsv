@@ -1,0 +1,317 @@
+# %ECSV 0.9
+# ---
+# datatype:
+# - {name: id, datatype: int64, description: Unique source identification number}
+# - {name: xcentroid, unit: pix, datatype: float64, format: .4f, description: X pixel value of the source centroid}
+# - {name: ycentroid, unit: pix, datatype: float64, format: .4f, description: Y pixel value of the source centroid}
+# - {name: sky_centroid.ra, unit: deg, datatype: float64}
+# - {name: sky_centroid.dec, unit: deg, datatype: float64}
+# - {name: aper_bkg_flux, unit: Jy, datatype: float64, format: .6e, description: The local background value calculated as the sigma-clipped
+#     median value in the background annulus aperture}
+# - {name: aper_bkg_flux_err, unit: Jy, datatype: float64, format: .6e, description: The standard error of the sigma-clipped median background
+#     value}
+# - {name: aper30_flux, unit: Jy, datatype: float64, format: .6e, description: Flux within the 30% encircled energy circular aperture}
+# - {name: aper30_flux_err, unit: Jy, datatype: float64, format: .6e, description: Flux error within the 30% encircled energy circular
+#     aperture}
+# - {name: aper50_flux, unit: Jy, datatype: float64, format: .6e, description: Flux within the 50% encircled energy circular aperture}
+# - {name: aper50_flux_err, unit: Jy, datatype: float64, format: .6e, description: Flux error within the 50% encircled energy circular
+#     aperture}
+# - {name: aper70_flux, unit: Jy, datatype: float64, format: .6e, description: Flux within the 70% encircled energy circular aperture}
+# - {name: aper70_flux_err, unit: Jy, datatype: float64, format: .6e, description: Flux error within the 70% encircled energy circular
+#     aperture}
+# - {name: aper_total_flux, unit: Jy, datatype: float64, format: .6e, description: Total aperture-corrected flux based on the 70% encircled
+#     energy circular aperture; calculated only for stars}
+# - {name: aper_total_flux_err, unit: Jy, datatype: float64, format: .6e, description: Total aperture-corrected flux error based on the
+#     70% encircled energy circular aperture; calculated only for stars}
+# - {name: aper30_abmag, datatype: float64, format: .6f, description: AB magnitude within the 30% encircled energy circular aperture}
+# - {name: aper30_abmag_err, datatype: float64, format: .6f, description: AB magnitude error within the 30% encircled energy circular
+#     aperture}
+# - {name: aper50_abmag, datatype: float64, format: .6f, description: AB magnitude within the 50% encircled energy circular aperture}
+# - {name: aper50_abmag_err, datatype: float64, format: .6f, description: AB magnitude error within the 50% encircled energy circular
+#     aperture}
+# - {name: aper70_abmag, datatype: float64, format: .6f, description: AB magnitude within the 70% encircled energy circular aperture}
+# - {name: aper70_abmag_err, datatype: float64, format: .6f, description: AB magnitude error within the 70% encircled energy circular
+#     aperture}
+# - {name: aper_total_abmag, datatype: float64, format: .6f, description: Total aperture-corrected AB magnitude based on the 70% encircled
+#     energy circular aperture; calculated only for stars}
+# - {name: aper_total_abmag_err, datatype: float64, format: .6f, description: Total aperture-corrected AB magnitude error based on the
+#     70% encircled energy circular aperture; calculated only for stars}
+# - {name: aper30_vegamag, datatype: float64, format: .6f, description: Vega magnitude within the 30% encircled energy circular aperture}
+# - {name: aper30_vegamag_err, datatype: float64, format: .6f, description: Vega magnitude error within the 30% encircled energy circular
+#     aperture}
+# - {name: aper50_vegamag, datatype: float64, format: .6f, description: Vega magnitude within the 50% encircled energy circular aperture}
+# - {name: aper50_vegamag_err, datatype: float64, format: .6f, description: Vega magnitude error within the 50% encircled energy circular
+#     aperture}
+# - {name: aper70_vegamag, datatype: float64, format: .6f, description: Vega magnitude within the 70% encircled energy circular aperture}
+# - {name: aper70_vegamag_err, datatype: float64, format: .6f, description: Vega magnitude error within the 70% encircled energy circular
+#     aperture}
+# - {name: aper_total_vegamag, datatype: float64, format: .6f, description: Total aperture-corrected Vega magnitude based on the 70% encircled
+#     energy circular aperture; calculated only for stars}
+# - {name: aper_total_vegamag_err, datatype: float64, format: .6f, description: Total aperture-corrected Vega magnitude error based on
+#     the 70% encircled energy circular aperture; calculated only for stars}
+# - {name: CI_30_50, datatype: float64, format: .4f, description: Concentration index calculated as aper30_abmag - aper50_abmag}
+# - {name: CI_50_70, datatype: float64, format: .4f, description: Concentration index calculated as aper50_abmag - aper70_abmag}
+# - {name: CI_30_70, datatype: float64, format: .4f, description: Concentration index calculated as aper30_abmag - aper70_abmag}
+# - {name: is_star, datatype: float64, description: Flag indicating whether the source is a star}
+# - {name: sharpness, datatype: float64, format: .6f, description: The DAOFind source sharpness statistic}
+# - {name: roundness, datatype: float32, format: .6f, description: The DAOFind source roundness statistic}
+# - {name: nn_dist, unit: pix, datatype: float64, format: .6f, description: The distance in pixels to the nearest neighbor}
+# - {name: nn_abmag, datatype: float64, format: .6f, description: 'The AB magnitude of the nearest neighbor.  If the object is a star
+#     it is the total aperture-corrected AB magnitude, otherwise it is the isophotal AB magnitude.'}
+# - {name: isophotal_flux, unit: Jy, datatype: float64, format: .6e, description: Isophotal flux}
+# - {name: isophotal_flux_err, unit: Jy, datatype: float32, format: .6e, description: Isophotal flux error}
+# - {name: isophotal_abmag, datatype: float64, format: .6f, description: Isophotal AB magnitude}
+# - {name: isophotal_abmag_err, datatype: float64, format: .6f, description: Isophotal AB magnitude error}
+# - {name: isophotal_vegamag, datatype: float64, format: .6f, description: Isophotal Vega magnitude}
+# - {name: isophotal_vegamag_err, datatype: float64, format: .6f, description: Isophotal Vega magnitude error}
+# - {name: isophotal_area, unit: pix2, datatype: float64, description: Isophotal area}
+# - {name: semimajor_sigma, unit: pix, datatype: float64, format: .6f, description: 1-sigma standard deviation along the semimajor axis
+#     of the 2D Gaussian function that has the same second-order central moments as the source}
+# - {name: semiminor_sigma, unit: pix, datatype: float64, format: .6f, description: 1-sigma standard deviation along the semiminor axis
+#     of the 2D Gaussian function that has the same second-order central moments as the source}
+# - {name: ellipticity, datatype: float64, format: .6f, description: 1 minus the ratio of the 1-sigma lengths of the semimajor and semiminor
+#     axes}
+# - {name: orientation, unit: deg, datatype: float64, format: .6f, description: The angle (degrees) between the positive X axis and the
+#     major axis (increases counter-clockwise)}
+# - {name: sky_orientation, unit: deg, datatype: float64, format: .6f, description: The position angle (degrees) from North of the major
+#     axis}
+# - {name: sky_bbox_ll.ra, unit: deg, datatype: float64}
+# - {name: sky_bbox_ll.dec, unit: deg, datatype: float64}
+# - {name: sky_bbox_ul.ra, unit: deg, datatype: float64}
+# - {name: sky_bbox_ul.dec, unit: deg, datatype: float64}
+# - {name: sky_bbox_lr.ra, unit: deg, datatype: float64}
+# - {name: sky_bbox_lr.dec, unit: deg, datatype: float64}
+# - {name: sky_bbox_ur.ra, unit: deg, datatype: float64}
+# - {name: sky_bbox_ur.dec, unit: deg, datatype: float64}
+# meta: !!omap
+# - {jwst version: 0.16.2}
+# - {numpy version: 1.18.5}
+# - {scipy version: 1.4.1}
+# - {astropy version: 4.0.1.post1}
+# - {photutils version: 0.7.2}
+# - aperture_params:
+#     aperture_corrections: !numpy.ndarray
+#       buffer: !!binary |
+#         M0ZkWFFNckRBVUIwTjdzLw==
+#       dtype: float32
+#       order: C
+#       shape: !!python/tuple [3]
+#     aperture_ee: !numpy.ndarray
+#       buffer: !!binary |
+#         SGdBQUFBQUFBQUF5QUFBQUFBQUFBRVlBQUFBQUFBQUE=
+#       dtype: int64
+#       order: C
+#       shape: !!python/tuple [3]
+#     aperture_radii: !numpy.ndarray
+#       buffer: !!binary |
+#         WVRJMVAxSkpqVDlrek4wLw==
+#       dtype: float32
+#       order: C
+#       shape: !!python/tuple [3]
+#     bkg_aperture_inner_radius: 2.7451
+#     bkg_aperture_outer_radius: 4.1076
+# - {abvega_offset: 1.3213}
+# - __serialized_columns__:
+#     aper30_flux:
+#       __class__: astropy.units.quantity.Quantity
+#       __info__: {description: Flux within the 30% encircled energy circular aperture, format: .6e}
+#       unit: &id001 !astropy.units.Unit {unit: Jy}
+#       value: !astropy.table.SerializedColumn {name: aper30_flux}
+#     aper30_flux_err:
+#       __class__: astropy.units.quantity.Quantity
+#       __info__: {description: Flux error within the 30% encircled energy circular aperture, format: .6e}
+#       unit: *id001
+#       value: !astropy.table.SerializedColumn {name: aper30_flux_err}
+#     aper50_flux:
+#       __class__: astropy.units.quantity.Quantity
+#       __info__: {description: Flux within the 50% encircled energy circular aperture, format: .6e}
+#       unit: *id001
+#       value: !astropy.table.SerializedColumn {name: aper50_flux}
+#     aper50_flux_err:
+#       __class__: astropy.units.quantity.Quantity
+#       __info__: {description: Flux error within the 50% encircled energy circular aperture, format: .6e}
+#       unit: *id001
+#       value: !astropy.table.SerializedColumn {name: aper50_flux_err}
+#     aper70_flux:
+#       __class__: astropy.units.quantity.Quantity
+#       __info__: {description: Flux within the 70% encircled energy circular aperture, format: .6e}
+#       unit: *id001
+#       value: !astropy.table.SerializedColumn {name: aper70_flux}
+#     aper70_flux_err:
+#       __class__: astropy.units.quantity.Quantity
+#       __info__: {description: Flux error within the 70% encircled energy circular aperture, format: .6e}
+#       unit: *id001
+#       value: !astropy.table.SerializedColumn {name: aper70_flux_err}
+#     aper_bkg_flux:
+#       __class__: astropy.units.quantity.Quantity
+#       __info__: {description: The local background value calculated as the sigma-clipped median value in the background annulus aperture,
+#         format: .6e}
+#       unit: *id001
+#       value: !astropy.table.SerializedColumn {name: aper_bkg_flux}
+#     aper_bkg_flux_err:
+#       __class__: astropy.units.quantity.Quantity
+#       __info__: {description: The standard error of the sigma-clipped median background value, format: .6e}
+#       unit: *id001
+#       value: !astropy.table.SerializedColumn {name: aper_bkg_flux_err}
+#     aper_total_flux:
+#       __class__: astropy.units.quantity.Quantity
+#       __info__: {description: Total aperture-corrected flux based on the 70% encircled energy circular aperture; calculated only for
+#           stars, format: .6e}
+#       unit: *id001
+#       value: !astropy.table.SerializedColumn {name: aper_total_flux}
+#     aper_total_flux_err:
+#       __class__: astropy.units.quantity.Quantity
+#       __info__: {description: Total aperture-corrected flux error based on the 70% encircled energy circular aperture; calculated only
+#           for stars, format: .6e}
+#       unit: *id001
+#       value: !astropy.table.SerializedColumn {name: aper_total_flux_err}
+#     ellipticity:
+#       __class__: astropy.units.quantity.Quantity
+#       __info__: {description: 1 minus the ratio of the 1-sigma lengths of the semimajor and semiminor axes, format: .6f}
+#       unit: !astropy.units.Unit {unit: ''}
+#       value: !astropy.table.SerializedColumn {name: ellipticity}
+#     isophotal_area:
+#       __class__: astropy.units.quantity.Quantity
+#       __info__: {description: Isophotal area}
+#       unit: !astropy.units.Unit {unit: pix2}
+#       value: !astropy.table.SerializedColumn {name: isophotal_area}
+#     isophotal_flux:
+#       __class__: astropy.units.quantity.Quantity
+#       __info__: {description: Isophotal flux, format: .6e}
+#       unit: *id001
+#       value: !astropy.table.SerializedColumn {name: isophotal_flux}
+#     isophotal_flux_err:
+#       __class__: astropy.units.quantity.Quantity
+#       __info__: {description: Isophotal flux error, format: .6e}
+#       unit: !astropy.units.Unit {unit: Jy}
+#       value: !astropy.table.SerializedColumn {name: isophotal_flux_err}
+#     nn_dist:
+#       __class__: astropy.units.quantity.Quantity
+#       __info__: {description: The distance in pixels to the nearest neighbor, format: .6f}
+#       unit: &id004 !astropy.units.Unit {unit: pix}
+#       value: !astropy.table.SerializedColumn {name: nn_dist}
+#     orientation:
+#       __class__: astropy.units.quantity.Quantity
+#       __info__: {description: The angle (degrees) between the positive X axis and the major axis (increases counter-clockwise), format: .6f}
+#       unit: &id002 !astropy.units.Unit {unit: deg}
+#       value: !astropy.table.SerializedColumn {name: orientation}
+#     semimajor_sigma:
+#       __class__: astropy.units.quantity.Quantity
+#       __info__: {description: 1-sigma standard deviation along the semimajor axis of the 2D Gaussian function that has the same second-order
+#           central moments as the source, format: .6f}
+#       unit: !astropy.units.Unit {unit: pix}
+#       value: !astropy.table.SerializedColumn {name: semimajor_sigma}
+#     semiminor_sigma:
+#       __class__: astropy.units.quantity.Quantity
+#       __info__: {description: 1-sigma standard deviation along the semiminor axis of the 2D Gaussian function that has the same second-order
+#           central moments as the source, format: .6f}
+#       unit: !astropy.units.Unit {unit: pix}
+#       value: !astropy.table.SerializedColumn {name: semiminor_sigma}
+#     sky_bbox_ll:
+#       __class__: astropy.coordinates.sky_coordinate.SkyCoord
+#       __info__: {description: Sky coordinate of the lower-left vertex of the minimal bounding box of the source}
+#       dec: !astropy.table.SerializedColumn
+#         __class__: astropy.coordinates.angles.Latitude
+#         unit: *id002
+#         value: !astropy.table.SerializedColumn {name: sky_bbox_ll.dec}
+#       frame: icrs
+#       ra: !astropy.table.SerializedColumn
+#         __class__: astropy.coordinates.angles.Longitude
+#         unit: *id002
+#         value: !astropy.table.SerializedColumn {name: sky_bbox_ll.ra}
+#         wrap_angle: &id003 !astropy.coordinates.Angle
+#           unit: *id002
+#           value: 360.0
+#       representation_type: spherical
+#     sky_bbox_lr:
+#       __class__: astropy.coordinates.sky_coordinate.SkyCoord
+#       __info__: {description: Sky coordinate of the lower-right vertex of the minimal bounding box of the source}
+#       dec: !astropy.table.SerializedColumn
+#         __class__: astropy.coordinates.angles.Latitude
+#         unit: *id002
+#         value: !astropy.table.SerializedColumn {name: sky_bbox_lr.dec}
+#       frame: icrs
+#       ra: !astropy.table.SerializedColumn
+#         __class__: astropy.coordinates.angles.Longitude
+#         unit: *id002
+#         value: !astropy.table.SerializedColumn {name: sky_bbox_lr.ra}
+#         wrap_angle: *id003
+#       representation_type: spherical
+#     sky_bbox_ul:
+#       __class__: astropy.coordinates.sky_coordinate.SkyCoord
+#       __info__: {description: Sky coordinate of the upper-left vertex of the minimal bounding box of the source}
+#       dec: !astropy.table.SerializedColumn
+#         __class__: astropy.coordinates.angles.Latitude
+#         unit: *id002
+#         value: !astropy.table.SerializedColumn {name: sky_bbox_ul.dec}
+#       frame: icrs
+#       ra: !astropy.table.SerializedColumn
+#         __class__: astropy.coordinates.angles.Longitude
+#         unit: *id002
+#         value: !astropy.table.SerializedColumn {name: sky_bbox_ul.ra}
+#         wrap_angle: *id003
+#       representation_type: spherical
+#     sky_bbox_ur:
+#       __class__: astropy.coordinates.sky_coordinate.SkyCoord
+#       __info__: {description: Sky coordinate of the upper-right vertex of the minimal bounding box of the source}
+#       dec: !astropy.table.SerializedColumn
+#         __class__: astropy.coordinates.angles.Latitude
+#         unit: *id002
+#         value: !astropy.table.SerializedColumn {name: sky_bbox_ur.dec}
+#       frame: icrs
+#       ra: !astropy.table.SerializedColumn
+#         __class__: astropy.coordinates.angles.Longitude
+#         unit: *id002
+#         value: !astropy.table.SerializedColumn {name: sky_bbox_ur.ra}
+#         wrap_angle: *id003
+#       representation_type: spherical
+#     sky_centroid:
+#       __class__: astropy.coordinates.sky_coordinate.SkyCoord
+#       __info__: {description: Sky coordinate of the source centroid}
+#       dec: !astropy.table.SerializedColumn
+#         __class__: astropy.coordinates.angles.Latitude
+#         unit: *id002
+#         value: !astropy.table.SerializedColumn {name: sky_centroid.dec}
+#       frame: icrs
+#       ra: !astropy.table.SerializedColumn
+#         __class__: astropy.coordinates.angles.Longitude
+#         unit: *id002
+#         value: !astropy.table.SerializedColumn {name: sky_centroid.ra}
+#         wrap_angle: *id003
+#       representation_type: spherical
+#     sky_orientation:
+#       __class__: astropy.units.quantity.Quantity
+#       __info__: {description: The position angle (degrees) from North of the major axis, format: .6f}
+#       unit: *id002
+#       value: !astropy.table.SerializedColumn {name: sky_orientation}
+#     xcentroid:
+#       __class__: astropy.units.quantity.Quantity
+#       __info__: {description: X pixel value of the source centroid, format: .4f}
+#       unit: *id004
+#       value: !astropy.table.SerializedColumn {name: xcentroid}
+#     ycentroid:
+#       __class__: astropy.units.quantity.Quantity
+#       __info__: {description: Y pixel value of the source centroid, format: .4f}
+#       unit: *id004
+#       value: !astropy.table.SerializedColumn {name: ycentroid}
+# schema: astropy-2.0
+id xcentroid ycentroid sky_centroid.ra sky_centroid.dec aper_bkg_flux aper_bkg_flux_err aper30_flux aper30_flux_err aper50_flux aper50_flux_err aper70_flux aper70_flux_err aper_total_flux aper_total_flux_err aper30_abmag aper30_abmag_err aper50_abmag aper50_abmag_err aper70_abmag aper70_abmag_err aper_total_abmag aper_total_abmag_err aper30_vegamag aper30_vegamag_err aper50_vegamag aper50_vegamag_err aper70_vegamag aper70_vegamag_err aper_total_vegamag aper_total_vegamag_err CI_30_50 CI_50_70 CI_30_70 is_star sharpness roundness nn_dist nn_abmag isophotal_flux isophotal_flux_err isophotal_abmag isophotal_abmag_err isophotal_vegamag isophotal_vegamag_err isophotal_area semimajor_sigma semiminor_sigma ellipticity orientation sky_orientation sky_bbox_ll.ra sky_bbox_ll.dec sky_bbox_ul.ra sky_bbox_ul.dec sky_bbox_lr.ra sky_bbox_lr.dec sky_bbox_ur.ra sky_bbox_ur.dec
+1 1339.8303 7.6092 82.85190469419291 -68.78448034484958 0.000000e+00 nan 2.279415e-08 nan 5.529708e-08 nan 1.053705e-07 nan nan nan 28.005441 nan 27.043245 nan 26.343202 nan nan nan 26.684141 nan 25.721945 nan 25.021902 nan nan nan 0.9622 0.7000 1.6622 nan 0.759463 0.761567 594.968915 18.437096 7.757490e-08 nan 26.675697 nan 25.354397 nan 5.0 0.771673 0.444118 0.424474 18.677485 19.047390 82.85196095585785 -68.78445620204037 82.85180980181939 -68.78445589487515 82.85195982434871 -68.7845291343697 82.85180866981466 -68.78452882720352
+2 1842.7243 325.5490 82.8357364585044 -68.79361632995871 3.069933e-07 nan 3.118547e-05 nan 6.595842e-05 nan 9.610951e-05 nan nan nan 20.165119 nan 19.351824 nan 18.943084 nan nan nan 18.843819 nan 18.030524 nan 17.621784 nan nan nan 0.8133 0.4087 1.2220 nan 0.770434 -0.097089 568.524618 18.440929 1.531657e-04 nan 18.437096 nan 17.115796 nan 597.0 2.821160 2.389018 0.153179 -0.601358 -0.231454 82.83640047526524 -68.79323074432148 82.83493874513675 -68.79322763556972 82.83638923646494 -68.79392360042203 82.8349274607852 -68.79392049157488
+3 1102.4166 556.4432 82.82432444485204 -68.78009312964952 3.326384e-07 nan 3.423380e-05 nan 7.612147e-05 nan 1.038603e-04 nan nan nan 20.063862 nan 19.196232 nan 18.858876 nan nan nan 18.742562 nan 17.874932 nan 17.537576 nan nan nan 0.8676 0.3374 1.2050 nan 0.729035 0.442862 477.432425 18.440929 1.620497e-04 nan 18.375879 nan 17.054579 nan 605.0 2.740064 2.318356 0.153905 2.095896 2.465800 82.82508236086248 -68.77978633886065 82.82362151566335 -68.77978313271676 82.82507138608307 -68.7804427281834 82.82361049778245 -68.78043952194584
+4 505.7193 621.1295 82.82124967043099 -68.7692063469615 3.191712e-07 nan 3.681937e-05 nan 6.491084e-05 nan 1.034312e-04 nan nan nan 19.984809 nan 19.369207 nan 18.863371 nan nan nan 18.663509 nan 18.047907 nan 17.542071 nan nan nan 0.6156 0.5058 1.1214 nan 0.858691 -0.074025 21.102262 25.859115 1.641137e-04 nan 18.362138 nan 17.040838 nan 671.0 2.977486 2.426258 0.185132 2.508753 2.878657 82.82204313657888 -68.76882119485836 82.8205326623477 -68.76881785087556 82.82202992713918 -68.76960521518407 82.82051939970277 -68.76960187108448
+5 487.4673 631.7205 82.82072204247179 -68.76887237538304 6.402260e-09 nan 1.335502e-08 nan 3.090501e-08 nan 6.620922e-08 nan nan nan 28.585888 nan 27.674928 nan 26.847704 nan nan nan 27.264588 nan 26.353628 nan 25.526404 nan nan nan 0.9110 0.8272 1.7382 nan 0.750032 -0.470314 21.102262 18.362138 1.645713e-07 nan 25.859115 nan 24.537815 nan 12.0 1.096111 0.832182 0.240786 -51.180464 -50.810560 82.82083444898237 -68.76883675377609 82.82058270309972 -68.7688361955864 82.82083290809713 -68.76892791891925 82.82058116118344 -68.76892736072729
+6 1517.6939 791.9989 82.81232747924783 -68.78763842740251 3.206380e-07 nan 3.341664e-05 nan 6.033402e-05 nan 9.554326e-05 nan nan nan 20.090093 nan 19.448594 nan 18.949500 nan nan nan 18.768793 nan 18.127294 nan 17.628200 nan nan nan 0.6415 0.4991 1.1406 nan 0.806690 0.046424 220.585800 18.267879 1.526259e-04 nan 18.440929 nan 17.119629 nan 573.0 2.740175 2.329440 0.149894 2.343041 2.712945 82.81296304970594 -68.78730812283075 82.81165288500448 -68.78730515546798 82.81295171350735 -68.78796451134767 82.81164151013732 -68.78796154389774
+7 558.1351 1007.7982 82.80176396363494 -68.77011782191393 3.627683e-07 nan 3.698372e-05 nan 6.395606e-05 nan 1.014097e-04 nan nan nan 19.979973 nan 19.385296 nan 18.884801 nan nan nan 18.658673 nan 18.063996 nan 17.563501 nan nan nan 0.5947 0.5005 1.0952 nan 0.803981 -0.039339 17.354439 26.335268 1.590961e-04 nan 18.395851 nan 17.074551 nan 630.0 2.822399 2.417294 0.143532 7.136763 7.506667 82.80249057556738 -68.76974325747537 82.80098004175376 -68.76973973949778 82.80247700004179 -68.77050904325633 82.80096641425645 -68.77050552515776
+8 1479.9521 1009.3320 82.80138795194688 -68.78692512622534 3.035247e-07 nan 4.357825e-05 nan 7.843465e-05 nan 1.195506e-04 nan nan nan 19.801826 nan 19.163730 nan 18.706120 nan nan nan 18.480526 nan 17.842430 nan 17.384820 nan nan nan 0.6381 0.4576 1.0957 nan 0.833316 0.079916 220.585800 18.440929 1.789980e-04 nan 18.267879 nan 16.946579 nan 623.0 2.675178 2.278134 0.148418 5.854401 6.224305 82.80214130877256 -68.78659042751586 82.80068002002915 -68.78658702401266 82.8021293297756 -68.78726504829903 82.80066799670682 -68.78726164469263
+9 575.4869 1007.4988 82.80177341746632 -68.77043423331641 4.015374e-09 nan 1.696749e-08 nan 3.969419e-08 nan 6.871280e-08 nan nan nan 28.325956 nan 27.403183 nan 26.807406 nan nan nan 27.004656 nan 26.081883 nan 25.486106 nan nan nan 0.9228 0.5958 1.5186 nan 0.587244 0.016587 17.354439 18.395851 1.061433e-07 nan 26.335268 nan 25.013968 nan 8.0 1.095429 0.499932 0.543620 0.481702 0.851606 82.80182435544494 -68.77039812243605 82.80167329760808 -68.77039777065032 82.80182273658345 -68.7704892874038 82.80167167812785 -68.77048893561667
+10 539.4413 1018.8824 82.8012119122601 -68.7697756771842 5.610754e-09 nan 1.554238e-08 nan 3.279248e-08 nan 6.113424e-08 nan nan nan 28.421207 nan 27.610564 nan 26.934289 nan nan nan 27.099906 nan 26.289264 nan 25.612989 nan nan nan 0.8106 0.6763 1.4869 nan 0.971862 -1.224773 21.732898 18.395851 1.193054e-07 nan 26.208350 nan 24.887050 nan 9.0 1.126920 0.580860 0.484560 -27.344089 -26.974185 82.8012821484783 -68.76974044416869 82.80108074399315 -68.76973997444783 82.80128052744374 -68.76983160913097 82.80107912213367 -68.76983113940818
+11 944.1869 1293.3588 82.78725584509984 -68.77712259786428 3.549153e-07 nan 3.053516e-05 nan 5.916032e-05 nan 9.283722e-05 nan nan nan 20.187999 nan 19.469924 nan 18.980695 nan nan nan 18.866699 nan 18.148624 nan 17.659395 nan nan nan 0.7181 0.4892 1.2073 nan 0.792475 0.199964 466.234438 18.439407 1.529340e-04 nan 18.438740 nan 17.117440 nan 662.0 3.030782 2.468752 0.185440 5.197707 5.567611 82.78796081735213 -68.77674709788953 82.78655054418938 -68.77674369417667 82.78794673746167 -68.77751288250111 82.78653641576173 -68.77750947867054
+12 548.2335 1539.5203 82.77499420370918 -68.76987282720178 3.421724e-07 nan 2.970692e-05 nan 6.239855e-05 nan 9.387016e-05 nan nan nan 20.217856 nan 19.412064 nan 18.968681 nan nan nan 18.896556 nan 18.090764 nan 17.647381 nan nan nan 0.8058 0.4434 1.2492 nan 0.681501 -0.160021 21.165970 26.754447 1.528400e-04 nan 18.439407 nan 17.118107 nan 629.0 2.889646 2.414785 0.164332 5.567701 5.937605 82.77575765052191 -68.7694966731947 82.7742471378578 -68.76949291732544 82.77574384561129 -68.77022599087127 82.77423328345208 -68.77022223487782
+13 530.1939 1550.5915 82.77444300183876 -68.76954252502316 5.490672e-09 nan 1.411820e-08 nan 3.206956e-08 nan 5.491823e-08 nan nan nan 28.525552 nan 27.634767 nan 27.050709 nan nan nan 27.204252 nan 26.313467 nan 25.729409 nan nan nan 0.8908 0.5841 1.4748 nan 0.817111 -0.925793 21.165970 18.439407 7.214746e-08 nan 26.754447 nan 25.433147 nan 5.0 0.771413 0.442931 0.425818 -19.727056 -19.357151 82.77449854378989 -68.76951177717642 82.77434749241948 -68.76951140107391 82.77449715921281 -68.76958470893365 82.77434610734745 -68.76958433282991
+14 1731.8809 1738.0433 82.76457899310955 -68.79142902527933 3.923263e-07 nan 3.270616e-05 nan 5.632762e-05 nan 9.421507e-05 nan nan nan 20.113426 nan 19.523196 nan 18.964699 nan nan nan 18.792126 nan 18.201896 nan 17.643399 nan nan nan 0.5902 0.5585 1.1487 nan 0.774189 0.094802 21.953857 26.596253 1.528986e-04 nan 18.438991 nan 17.117691 nan 609.0 2.768138 2.431193 0.121723 1.219005 1.588909 82.7654185729521 -68.79113247419278 82.76380579364461 -68.79112836925823 82.76540618521628 -68.79177062638986 82.76379335962382 -68.79176652133604
+15 1753.0306 1725.8140 82.76518785884478 -68.79181621359835 4.525884e-09 nan 1.687977e-08 nan 3.467962e-08 nan 7.070738e-08 nan nan nan 28.331584 nan 27.549814 nan 26.776338 nan nan nan 27.010284 nan 26.228514 nan 25.455038 nan nan nan 0.7818 0.7735 1.5552 nan 0.625221 -0.032730 24.430804 18.438991 8.523898e-08 nan 26.573404 nan 25.252104 nan 6.0 0.936009 0.473132 0.494521 -36.097743 -35.727839 82.76525462872166 -68.79178847511103 82.76505302533137 -68.79178796263679 82.76525321243689 -68.79186140678914 82.76505160838539 -68.7918608943132
+16 1713.2044 1749.5828 82.76400403121882 -68.79108701733104 3.116040e-09 nan 2.277625e-08 nan 4.935256e-08 nan 8.162374e-08 nan nan nan 28.006294 nan 27.166726 nan 26.620459 nan nan nan 26.684994 nan 25.845426 nan 25.299159 nan nan nan 0.8396 0.5463 1.3858 nan 0.681026 -1.083770 21.953857 18.438991 8.346389e-08 nan 26.596253 nan 25.274953 nan 5.0 0.758023 0.447709 0.409372 -19.742948 -19.373044 82.76405921053065 -68.79105607999509 82.76390801298858 -68.79105569459804 82.76405779037164 -68.7911290116635 82.76390659233365 -68.7911286262652
+17 425.3479 1839.7877 82.75991938761983 -68.76759399928946 3.525575e-07 nan 2.861996e-05 nan 5.853748e-05 nan 9.202277e-05 nan nan nan 20.258327 nan 19.481415 nan 18.990262 nan nan nan 18.937027 nan 18.160115 nan 17.668962 nan nan nan 0.7769 0.4912 1.2681 nan 0.665048 -0.358091 22.615473 26.610164 1.508692e-04 nan 18.453499 nan 17.132199 nan 634.0 2.913611 2.477493 0.149683 1.177650 1.547554 82.7606461683399 -68.76721573222275 82.75913581311784 -68.76721184188563 82.76063043979832 -68.76801798026445 82.75912003014302 -68.76801408978514
+18 405.9939 1851.4873 82.75933729740478 -68.76723960089899 4.263088e-09 nan 1.775648e-08 nan 3.862063e-08 nan 7.104839e-08 nan nan nan 28.276608 nan 27.432952 nan 26.771114 nan nan nan 26.955308 nan 26.111652 nan 25.449814 nan nan nan 0.8437 0.6618 1.5055 nan 0.744924 -0.547547 22.615473 18.453499 8.240138e-08 nan 26.610164 nan 25.288864 nan 6.0 0.799624 0.499475 0.375363 -1.750249 -1.380345 82.75938753895102 -68.7672124912085 82.75923650344932 -68.76721210165955 82.75938610500684 -68.76728542283776 82.75923506901033 -68.76728503328752
+19 798.9845 2062.7808 82.74855532267708 -68.77437718484748 7.387523e-10 nan 2.195791e-08 nan 5.201515e-08 nan 1.118173e-07 nan nan nan 28.046022 nan 27.109675 nan 26.278728 nan nan nan 26.724722 nan 25.788375 nan 24.957428 nan nan nan 0.9363 0.8309 1.7673 nan 1.063605 1.392244 435.120922 18.453499 7.462823e-08 nan 26.717742 nan 25.396442 nan 5.0 0.815728 0.497537 0.390070 55.796242 56.166146 82.74862037145556 -68.77435028882172 82.74841892645453 -68.77434975661518 82.74861890176233 -68.7744232203599 82.74841745610115 -68.77442268815156
